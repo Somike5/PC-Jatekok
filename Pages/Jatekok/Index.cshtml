@@ -1,0 +1,80 @@
+﻿@page "{keresoSzo?}" // Azért kell a kérdőjel mert így nem lesz kötelező paraméter. A kérdőjel nélkül kötelező lesz
+@model PC_Jatekok.Pages.Jatekok.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Új készítése</a>
+</p>
+
+<form>
+    <p>
+        Név:
+        <input asp-for="keresNev" placeholder="Keresendő Jéték Neve">
+    </p>
+    <p>
+        Fejlesztő:
+        <input asp-for="keresKiado" placeholder="Keresendő Fejlesztő">
+        <input type="submit" value="Keresés">
+    </p>
+    <!-- komment -->
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Jatek[0].nev)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jatek[0].category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jatek[0].genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jatek[0].platform)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jatek[0].developer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jatek[0].releaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Jatek) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nev)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.platform)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.developer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.releaseDate)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.id">Szerk.</a> |
+                    <a asp-page="./Details" asp-route-id="@item.id">Részletek</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.id">Törlés</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
