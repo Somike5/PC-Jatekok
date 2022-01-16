@@ -12,13 +12,18 @@ namespace PC_Jatekok.Pages.Jatekok
 {
     public class IndexModel : PageModel
     {
-
-        //[BindProperty(SupportsGet = true)]
-        public string keresNev;
-        public string keresKiado;
-
         private readonly PC_Jatekok.Data.PC_JatekokContext _context;
 
+        [BindProperty(SupportsGet = true)]
+        public string keresNev {set;get; } // Ha nincs setter-getter, akkor nem ismeri fel a BindPropertyt
+        [BindProperty(SupportsGet = true)]
+        public string keresFejleszto { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string keresKategoria { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string keresPlatform { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string keresMufaj { get; set; }
         public IndexModel(PC_Jatekok.Data.PC_JatekokContext context)
         {
             _context = context;
@@ -29,18 +34,26 @@ namespace PC_Jatekok.Pages.Jatekok
 
         public async Task OnGetAsync()
         {
-            Console.WriteLine("onGetAsync.....");
             Jatek = await _context.Jatek.ToListAsync();
 
-            var emberek = _context.Jatek.Select(x => x);
+            var jatekok = _context.Jatek.Select(x => x);
 
             if (!string.IsNullOrEmpty(keresNev)) {
-                emberek = emberek.Where(x => x.nev.Contains(keresNev));
+                jatekok = jatekok.Where(x => x.nev.Contains(keresNev));
             }
-            if (!string.IsNullOrEmpty(keresKiado)) {
-                emberek = emberek.Where(x => x.developer.Contains(keresKiado));
+            if (!string.IsNullOrEmpty(keresFejleszto)) {
+                jatekok = jatekok.Where(x => x.developer.Contains(keresFejleszto));
             }
-            Jatek = await emberek.ToListAsync();
+            if (!string.IsNullOrEmpty(keresKategoria)) {
+                jatekok = jatekok.Where(x => x.category.Contains(keresKategoria));
+            }
+            if (!string.IsNullOrEmpty(keresMufaj)) {
+                jatekok = jatekok.Where(x => x.genre.Contains(keresMufaj));
+            }
+            if (!string.IsNullOrEmpty(keresPlatform)) {
+                jatekok = jatekok.Where(x => x.platform.Contains(keresPlatform));
+            }
+            Jatek = await jatekok.ToListAsync();
         }
 
 

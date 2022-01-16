@@ -5,9 +5,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Játék szerkesztése</h1>
 
-<h4>Jatek</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,32 +15,56 @@
             <input type="hidden" asp-for="Jatek.id" />
             <div class="form-group">
                 <label asp-for="Jatek.nev" class="control-label"></label>
-                <input asp-for="Jatek.nev" class="form-control" />
+                <input asp-for="Jatek.nev" class="form-control" required/>
                 <span asp-validation-for="Jatek.nev" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Jatek.category" class="control-label"></label>
-                <input asp-for="Jatek.category" class="form-control" />
+                <!--<input asp-for="Jatek.category" class="form-control" />-->
+                <select asp-for="Jatek.category" class="form-control" required>
+                    <option value="">Válassz</option>
+                    <option value="Csak Egyjátékos">Csak Egyjátékos</option>
+                    <option value="Csak TöbbJátékos">Csak Többjátékos</option>
+                    <option value="Egy és Több játékos">Egy és Több játékos</option>
+                </select>
                 <span asp-validation-for="Jatek.category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Jatek.genre" class="control-label"></label>
-                <input asp-for="Jatek.genre" class="form-control" />
+                <!--<input asp-for="Jatek.genre" class="form-control" />-->
+                <select asp-for="Jatek.genre" class="form-control" required>
+                    <option value="">Válassz</option>
+                    <option value="Akció">Akció</option>
+                    <option value="Verseny">Verseny</option>
+                    <option value="Kaland">Kaland</option>
+                    <option value="Szimulátor">Verseny</option>
+                    <option value="FPS">Verseny</option>
+                    <option value="Stratégia">Stratégia</option>
+                    <option value="Szerepjáték">Szerepjáték</option>
+                    <option value="Kaland">Oktatás</option>
+                </select>
                 <span asp-validation-for="Jatek.genre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Jatek.platform" class="control-label"></label>
-                <input asp-for="Jatek.platform" class="form-control" />
+                <!--<input asp-for="Jatek.platform" class="form-control" /> -->
+                <select asp-for="Jatek.platform" class="form-control" required>
+                    <option value="">Válassz</option>
+                    <option value="Linux">Linux</option>
+                    <option value="Windows">Windows</option>
+                    <option value="MacOS">Mac OS</option>
+                    <option value="Mind">Mind</option>
+                </select>
                 <span asp-validation-for="Jatek.platform" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Jatek.developer" class="control-label"></label>
-                <input asp-for="Jatek.developer" class="form-control" />
+                <input asp-for="Jatek.developer" class="form-control" required/>
                 <span asp-validation-for="Jatek.developer" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Jatek.releaseDate" class="control-label"></label>
-                <input asp-for="Jatek.releaseDate" class="form-control" />
+                <input asp-for="Jatek.releaseDate" class="form-control" required/>
                 <span asp-validation-for="Jatek.releaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,7 +75,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Vissza a listához</a>
 </div>
 
 @section Scripts {

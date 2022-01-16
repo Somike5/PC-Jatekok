@@ -5,22 +5,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>PC-Játékok</h1>
 
 <p>
-    <a asp-page="Create">Új készítése</a>
+    <h3><a asp-page="Create">Új készítése</a></h3>
 </p>
 
 <form>
     <p>
-        Név:
-        <input asp-for="keresNev" placeholder="Keresendő Jéték Neve">
+        <input asp-for="keresNev" class="form-control" placeholder="Keresés Játék Nevére">
     </p>
     <p>
-        Fejlesztő:
-        <input asp-for="keresKiado" placeholder="Keresendő Fejlesztő">
-        <input type="submit" value="Keresés">
+        <input asp-for="keresFejleszto" class="form-control" placeholder="Keresés Fejlesztőre">
     </p>
+    <p>
+        <select asp-for="keresKategoria" class="form-control">
+            <option value="">Kategória</option>
+            <option value="Csak Egyjátékos">Csak Egyjátékos</option>
+            <option value="Csak TöbbJátékos">Csak Többjátékos</option>
+            <option value="Egy és Több játékos">Egy és Több játékos</option>
+        </select>
+    </p>
+    <p>
+        <select asp-for="keresMufaj" class="form-control">
+            <option value="">Műfaj</option>
+            <option value="Akció">Akció</option>
+            <option value="Verseny">Verseny</option>
+            <option value="Kaland">Kaland</option>
+            <option value="Szimulátor">Verseny</option>
+            <option value="FPS">Verseny</option>
+            <option value="Stratégia">Stratégia</option>
+            <option value="Szerepjáték">Szerepjáték</option>
+            <option value="Kaland">Oktatás</option>
+        </select>
+    </p>
+    <p>
+        <select asp-for="keresPlatform" class="form-control">
+            <option value="">Platform</option>
+            <option value="Linux">Linux</option>
+            <option value="Windows">Windows</option>
+            <option value="MacOS">Mac OS</option>
+            <option value="Mind">Mind</option>
+        </select>
+    </p>
+    <p><input class="form-control btn-outline-primary" type="submit" value="Keresés"></p>
+
     <!-- komment -->
 </form>
 
